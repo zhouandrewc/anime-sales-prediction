@@ -40,7 +40,7 @@ Various intermediate `.pickle` files produced by our scraping and cleaning proce
 
 * [Utilities](utilities)
 
-Utility functions to help with scraping, found in `scraping_utilities.py`.
+Utility functions to help with scraping, found in [`scraping_utilities.py`](utilities/scraping_utilities.py).
 
 * [Notebooks](notebooks)
 
@@ -48,7 +48,7 @@ The code to clean and scrape our data, as well as to implement and evaluate our 
 
 * [Presentation](presentation)
 
-A PDF of the presentation given at bootcamp. Note that significant work was done and adjustments were made after the presentation was given and the current results are rather different, though much more reliable.
+A [PDF](presentation/project_two_presentation_zhou_andrew.pdf) of the presentation given at bootcamp. Note that significant work was done and adjustments were made after the presentation was given and the current results are rather different, though much more reliable.
 
 ## Acknowledgments
 
