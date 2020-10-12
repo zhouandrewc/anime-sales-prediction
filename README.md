@@ -24,6 +24,10 @@ Various intermediate `.pickle` files produced by our scraping and cleaning proce
 
 The code to clean and scrape our data, as well as to implement and evaluate our regressions.
 
+* [Presentation](presentation)
+
+A PDF of the presentation given at bootcamp. Note that significant work was done and adjustments were made after the presentation was given and the current results are rather different, though much more reliable.
+
 ## Acknowledgments
 
 Thanks to the awesome staff and students at Metis who were a huge help during this project.
