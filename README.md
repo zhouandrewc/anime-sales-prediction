@@ -2,7 +2,7 @@
 
 This repository contains the code, data, and documentation by Andrew Zhou.
 
-Documentation is sparse at the moment but will be updated ASAP.
+Documentation is sparse at the moment (Oct 12 AM) but will be thoroughly updated ASAP.
 
 ## Problem Statement
 
@@ -13,6 +13,26 @@ I chose to focus on predicting anime sales from various features. Our sales data
 ## Methods
 
 Various regression and feature engineering techniques were attempted, including cross-validated linear, ridge, and lasso regression, forward subset selection, principal component analysis, and k-means clustering. Our principal feature engineering work was done in attempting to reduce the "genre" feature to a more manageable size and form.
+
+### Tools Used
+
+* BeautifulSoup
+* pandas, numpy
+* Matplotlib, Seaborn
+* Scikit-learn, stats
+* fuzzywuzzy ([installation instructions & guide](https://towardsdatascience.com/how-to-do-fuzzy-matching-in-python-pandas-dataframe-6ce3025834a6))
+
+### Features Used
+
+* MyAnimeList Score
+* MyAnimeList Members
+* Year
+* Rating (PG, PG-13, R, etc.)
+* Genres
+
+### Target Variable
+
+* DVD sales of an anime show's first release, in millions of yen
 
 ## Contents
 
