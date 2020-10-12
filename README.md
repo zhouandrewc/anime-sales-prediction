@@ -1,12 +1,14 @@
 # Metis Data Science Bootcamp Fall 2020 Project 2: Anime Sales Predictions
 
-This repository contains the code, data, and documentation by Andrew Zhou.
+This repository contains code, data, and documentation for Andrew Zhou's Anime Sales Predictions project for the Metis Data Science Bootcamp.
 
 ## Problem Statement
 
 Given data scraped from the Internet by our own means, we're tasked to employ linear regression to produce a model.
 
-I chose to focus on predicting anime sales from various features. Our sales data were sourced from the [someanithing blog](https://www.someanithing.com/series-data-quick-view) and our anime series info were from [MyAnimeList](https://myanimelist.net/).
+I chose to focus on predicting anime sales, as measured by the sales of the first release of anime DVDs, from various features. The importance of these sales, though perhaps overstated at times, still far outstrips the importance of DVD sales in the U.S., and is considered one metric to measure the success of an anime, as [various](https://www.animenewsnetwork.com/feature/2012-03-07) [sources](https://www.someanithing.com/sales-faqguide) attest.
+
+Our sales data were sourced from the [someanithing blog](https://www.someanithing.com/series-data-quick-view) and our anime series info were from [MyAnimeList](https://myanimelist.net/).
 
 ## Methods
 
@@ -49,6 +51,10 @@ The code to clean and scrape our data, as well as to implement and evaluate our 
 * [Presentation](presentation)
 
 A [PDF](presentation/project_two_presentation_zhou_andrew.pdf) of the presentation given at bootcamp. Note that significant work was done and adjustments were made after the presentation was given and the current results are rather different, though much more reliable.
+
+## Limitations and Further Work
+
+Our project mostly functions as proof of concept rather than as a decision-making or prognosticating tool; it cannot be used to predict whether an anime will succeed before it airs. Certain features used are unlikely to be available when an anime is unreleased, and others develop, accumulate, and change over time. Additionally, the data are from Western sources and so may lack predictivity compared to comparable Japanese data. Improvements to the model might include tracking time series data, analyzing trends, and more generally acknowledging the time-dependent nature of our features.
 
 ## Acknowledgments
 
