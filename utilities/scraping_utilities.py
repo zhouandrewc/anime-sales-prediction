@@ -218,6 +218,20 @@ def get_anime_link(sales_anime_name, studio_anime_info, fuzzy_match=False, ratio
         return studio_anime_links[max_index]
     return None
 
+    """
+    Get desired data, specified in keep_cols, from an BeautifulSoup element
+    extracted in get_anime_data.
+
+    :param elem: a BeautifulSoup element containing one specific piece of data
+        extracted from the MAL page.
+    :param list of str: identifiers indicating the data we would like
+        to keep.
+
+    :return str col_name: the data identifier, or None
+    :return data: the desired data, which may be reprented in various ways,
+        or None
+    :rtype: tuple of (str, various data types) or (None, None)
+    """
 def parse_col_data(elem, keep_cols):
     text = elem.parent.find_all(text=True)
 
@@ -260,6 +274,17 @@ def parse_col_data(elem, keep_cols):
 
     return col_name, data
 
+    """
+    Given a MAL anime page URL and a list of data identifiers, extract the
+    relevant data from the page.
+
+    :param str anime_url: the URL of the MAL page for an anime
+    :param list of str keep_cols: identifiers for the features to scrape
+
+    :return anime_dict: a dict of data for the specified anime with keys
+        as column names and values as the value for the data
+    :rtype: dict of str, various data types
+    """
 def get_anime_data(anime_url, keep_cols):
     soup = get_soup(anime_url)
 
@@ -272,7 +297,6 @@ def get_anime_data(anime_url, keep_cols):
         del anime_dict[None]
 
     return anime_dict
-
 
 def create_mal_info_df(sales_anime_info, keep_cols):
     """

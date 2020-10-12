@@ -36,7 +36,7 @@ Various regression and feature engineering techniques were attempted, including 
 
 * [Data](data)
 
-Various intermediate `.pickle` files produced by our scraping and cleaning process, as well as a final `anime_sales_df_v3.pickle` containing all of our required data for regression.
+Various intermediate `.pickle` files produced by our scraping and cleaning process, as well as a final `anime_sales_df_final.pickle` containing all of our required data for regression.
 
 * [Utilities](utilities)
 
