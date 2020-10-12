@@ -177,6 +177,7 @@ def create_studio_df(mal_studio_info, matched_studio_names):
                 print("Exception in getting anime information. Returning \
                        incomplete dataframe early. Potentially a connection \
                        issue.")
+                return studio_df
             studio_row = pd.Series(data=[studio_link, anime_info],
                                    index=["link", "anime_info"],
                                    name=studio_name)
@@ -201,6 +202,10 @@ def get_anime_link(sales_anime_name, studio_anime_info, fuzzy_match=False, ratio
     :param bool fuzzy_match: whether to use fuzzy matching
     :param ratio: a number from 0 to 100 indicating the threshold over which
         to fuzzy match. 100 requires a perfect match (aside from case).
+
+    :return: the url of the MAL page for the anime if one is found;
+        otherwise None
+    :rtype: str or None
     """
     studio_anime_names = list(studio_anime_info.keys())
     studio_anime_links = list(studio_anime_info.values())
@@ -212,3 +217,114 @@ def get_anime_link(sales_anime_name, studio_anime_info, fuzzy_match=False, ratio
     if ratios[max_index] > ratio:
         return studio_anime_links[max_index]
     return None
+
+def parse_col_data(elem, keep_cols):
+    text = elem.parent.find_all(text=True)
+
+    text_clean = [tag.strip() for tag in text if len(tag.strip())\
+                 and tag.strip() != ',']
+
+    col_name = text_clean[0]
+    data = text_clean[1:]
+
+    col_name = col_name[:-1].lower()
+
+    if col_name in keep_cols:
+        try:
+            if col_name == "title":
+                data = data[0]
+            if col_name == "duration":
+                data = data[0].split(" ")[0]
+            if col_name == "episodes":
+                data = data[0]
+            if col_name == "rating":
+                data = data[0].split(" ")[0]
+            if col_name == "members" or col_name == "favorites":
+                data = int(data[0].replace(",",""))
+            if col_name == "genres":
+                data = data[::2]
+            if col_name == "score":
+                data = float(data[0])
+            if col_name == "broadcast":
+                match = re.compile(r'(\w+)s at (\d\d:\d\d)').match(data[0])
+                if match:
+                    data = match.groups()
+                else:
+                    data = None
+        except:
+            print("error:", col_name, data)
+            data = None
+    # If we don't need this column, return None, None
+    if col_name not in keep_cols:
+        return None, None
+
+    return col_name, data
+
+def get_anime_data(anime_url, keep_cols):
+    soup = get_soup(anime_url)
+
+    info_els = soup.find_all(class_="dark_text")
+
+    anime_dict = dict([parse_col_data(el, keep_cols) for el in info_els])
+
+    # Remove any None entries
+    if None in anime_dict:
+        del anime_dict[None]
+
+    return anime_dict
+
+
+def create_mal_info_df(sales_anime_info, keep_cols):
+    """
+    Given a dataframe containing names of anime from the sales data and their
+    matched MAL links, scrape data for each such anime and construct a
+    dataframe that we may later concatenate with our existing sales dataframe.
+
+    :param pd.DataFrame studio_anime_info: a dict where the indices are the
+        anime names from the sales dataframe, and the columns are the
+        (redundant) title and MAL link.
+    :param list of str keep_cols: a list indicating which information from the
+        MAL page to keep. This is a list of the (lowercased) prefixes preceding
+        the information on the page, e.g. "Episodes".
+
+    :return mal_info_df: a dataframe containing scraped MAL anime information
+        :index of str: the names of all anime
+        :columns:
+            :columns representing the desired information in keep_cols; types
+                and data formats will vary and parsing is handled in the call
+                to get_anime_data (& parse_col_data)
+    :rtype: pd.DataFrame
+    """
+    mal_info_df = pd.DataFrame(columns=keep_cols)
+
+    count = 0
+
+    for anime_name, anime_link in sales_anime_info.values:
+        if anime_link:
+            count += 1
+
+            # Take a break occasionally to avoid being rate limited
+            if count % 5 == 0:
+                time.sleep(1.5)
+            if count % 17 == 0:
+                time.sleep(5)
+
+            try:
+                anime_data = get_anime_data(anime_link, keep_cols)
+            except:
+                print("Exception in getting anime information. Returning " +
+                       "incomplete dataframe early. Potentially a connection " +
+                       "issue.")
+                return mal_info_df
+            print("Getting:", anime_name)
+            mal_info_df = mal_info_df.append(pd.Series(anime_data, name=anime_name))
+
+            # Sometimes an error occurs as MAL has rate limited us. This error
+            # is reflected when we don't get enough data from the call to
+            # get_anime_data. We print that there's an error and sleep for 20
+            # seconds to hopefully be unrestricted.
+            if len(anime_data.keys()) < len(keep_cols) - 1:
+                print("error scraping:", name, " ", link)
+                time.sleep(20)
+
+    return mal_info_df
