@@ -28,7 +28,7 @@ Various regression and feature engineering techniques were attempted, including 
 * MyAnimeList Members
 * Year
 * Rating (PG, PG-13, R, etc.)
-* Genres
+* Genres (binary variable indicating whether an anime belongs to a particular genre, almost 40 in total)
 
 ### Target Variable
 
@@ -40,9 +40,13 @@ Various regression and feature engineering techniques were attempted, including 
 
 Various intermediate `.pickle` files produced by our scraping and cleaning process, as well as a final `anime_sales_df_v3.pickle` containing all of our required data for regression.
 
-* [Code](notebooks)
+* [Utilities](utilities)
 
-The code to clean and scrape our data, as well as to implement and evaluate our regressions.
+Utility functions to help with the scraping and regression logic.
+
+* [Notebooks](notebooks)
+
+The code to clean and scrape our data, as well as to implement and evaluate our regressions. Notebooks are prefixed with the order of execution.
 
 * [Presentation](presentation)
 
