@@ -2,8 +2,6 @@
 
 This repository contains the code, data, and documentation by Andrew Zhou.
 
-Documentation is sparse at the moment (Oct 12 AM) but will be thoroughly updated ASAP.
-
 ## Problem Statement
 
 Given data scraped from the Internet by our own means, we're tasked to employ linear regression to produce a model.
@@ -42,11 +40,11 @@ Various intermediate `.pickle` files produced by our scraping and cleaning proce
 
 * [Utilities](utilities)
 
-Utility functions to help with the scraping and regression logic.
+Utility functions to help with scraping, found in `scraping_utilities.py`.
 
 * [Notebooks](notebooks)
 
-The code to clean and scrape our data, as well as to implement and evaluate our regressions. Notebooks are prefixed with the order of execution.
+The code to clean and scrape our data, as well as to implement and evaluate our regressions. Notebooks are prefixed with the order of execution. Notebook 1 [scrapes sales data from someanithing](notebooks/1_scrape_anime_sales.ipynb); Notebook 2 [matches anime from the sales database to studios on MyAnimeList](notebooks/2_match_anime_to_studio.ipynb); Notebook 3 [matches the sales database anime to their MyAnimeList links and scrapes our desired features](notebooks/3_scrape_mal_anime_info.ipynb); Notebook 4 [does a final cleaning passthrough on the data](notebooks/4_final_clean.ipynb); and Notebook 5 [constructs, evaluates, and analyzes](notebooks/5_regression.ipynb) our linear regression model.
 
 * [Presentation](presentation)
 
