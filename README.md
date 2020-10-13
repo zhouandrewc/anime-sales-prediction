@@ -22,13 +22,33 @@ Various regression and feature engineering techniques were attempted, including 
 * Scikit-learn, stats
 * fuzzywuzzy ([installation instructions & guide](https://towardsdatascience.com/how-to-do-fuzzy-matching-in-python-pandas-dataframe-6ce3025834a6))
 
+### Techniques Used
+
+* Regression Methods
+    * Ordinary Least Squares Regression
+    * Polynomial Regression
+    * Ridge Regression
+    * Lasso Regression
+* Feature Engineering
+    * Forward Selection (Features)
+    * Principal Component Reduction
+    * k-means Clustering
+    * Kruskal-Wallis Statistical Test
+
 ### Features Used
 
 * MyAnimeList Score
 * MyAnimeList Members
 * Year
-* Rating (PG, PG-13, R, etc.)
-* Genres (binary variable indicating whether an anime belongs to a particular genre, almost 40 in total)
+    * 2000 to 2020
+* Rating
+    * PG, PG-13, R, etc.
+* Source
+    * e.g. Manga, Original, Light Novel
+* Genres
+    * Binary Variables, 40 in total
+    * 1 if anime belongs to the genre, 0 otherwise
+    * e.g. Action, Comedy, Drama
 
 ### Target Variable
 
@@ -46,7 +66,7 @@ Utility functions to help with scraping, found in [`scraping_utilities.py`](util
 
 * [Notebooks](notebooks)
 
-The code to clean and scrape our data, as well as to implement and evaluate our regressions. Notebooks are prefixed with the order of execution. Notebook 1 [scrapes sales data from someanithing](notebooks/1_scrape_anime_sales.ipynb); Notebook 2 [matches anime from the sales database to studios on MyAnimeList](notebooks/2_match_anime_to_studio.ipynb); Notebook 3 [matches the sales database anime to their MyAnimeList links and scrapes our desired features](notebooks/3_scrape_mal_anime_info.ipynb); Notebook 4 [does a final cleaning passthrough on the data](notebooks/4_final_clean.ipynb); and Notebook 5 [constructs, evaluates, and analyzes](notebooks/5_regression.ipynb) our linear regression model.
+The code to clean and scrape our data, as well as to implement and evaluate our regressions. Notebooks are prefixed with the order of execution. [Notebook 1](notebooks/1_scrape_anime_sales.ipynb) scrapes sales data from someanithing; [Notebook 2](notebooks/2_match_anime_to_studio.ipynb) matches anime from the sales database to studios on MyAnimeList; [Notebook 3](notebooks/3_scrape_mal_anime_info.ipynb) matches the sales database anime to their MyAnimeList links and scrapes our desired features; [Notebook 4](notebooks/4_final_clean.ipynb) does a final cleaning passthrough on the data; and [Notebook 5](notebooks/5_regression.ipynb) constructs, evaluates, and analyzes our linear regression model.
 
 * [Presentation](presentation)
 
