@@ -347,8 +347,8 @@ def create_mal_info_df(sales_anime_info, keep_cols):
             # is reflected when we don't get enough data from the call to
             # get_anime_data. We print that there's an error and sleep for 20
             # seconds to hopefully be unrestricted.
-            if len(anime_data.keys()) < len(keep_cols) - 1:
-                print("error scraping:", name, " ", link)
+            if len(anime_data.keys()) < len(keep_cols) - 3:
+                print("error scraping:", anime_name, " ", anime_link)
                 time.sleep(20)
 
     return mal_info_df
